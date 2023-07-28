@@ -6,97 +6,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="script.js"></script>
 
     <style>
-        :root{
-            --primary:#BB86FC;
-            --primary-var:#3700B3;
-            --secondary:#03DAC5;
-            --background:#282828 ;
+        :root {
+            --primary: #BB86FC;
+            --primary-var: #3700B3;
+            --secondary: #03DAC5;
+            --background: #282828;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .main{
+            width: 95%;
+            margin: auto;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+            background-color: red;
+            font-size: 4vw;
+            font-weight: bold;
+        }
+        
+        .data{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            background-color: antiquewhite;
+            gap: 10px;
+        }
+
+        .form-control{
+            /* background-color: #3700B3; */
+            width: 32%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .field{
+            width: 90%;
+            /* background-color: aqua; */
+            font-size: 2vw;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="text-5xl p-4" style="background-color:var(--primary-var) ;">
-        <h1>Triangle Calculator</h1>
-    </div>
-
-    <div id="desc" class="flex-row">
-        <div class="">
-
-        </div>
-        <h2>Enter any three data from the six input box and press calculate and it will calculate the other three data of
-
-    </div>
-        triangle
-    </h2>
-
-
-    <svg height="300" width="300">
-        <line x1="50" y1="210" x2="70" y2="90" style="stroke:rgb(255, 0, 0);stroke-width:2.5;opacity:0.5" id="sideb" />
-        <line x1="70" y1="90" x2="250" y2="210" style="stroke:rgb(255, 0, 0);stroke-width:2.5;opacity:0.5" id="sidec" />
-        <line x1="250" y1="210" x2="50" y2="210" style="stroke:rgb(255,0,0);stroke-width:2.5;opacity:0.5" id="sidea" />
-        <path d="M 75 210 q 3 -24 -20 -24" style="stroke:rgb(37, 125, 207); stroke-width:3;opacity:0.5" fill="none"
-            id="anglec" />
-        <path d="M 205 210 q -7 -15 8 -24" style="stroke : rgb(37, 125, 207); stroke-width:3;opacity:0.5" fill="none"
-            id="angleb" />
-        <path d="M 66 117 q 20 9 26 -13" style="stroke : rgb(37, 125, 207); stroke-width:3;opacity:0.5" fill="none"
-            id="anglea" />
-        <text x="50" y="213" dx="-20" style="opacity:0.5" id="C">C</text>
-        <text x="65" y="90" dy="-5" style="opacity:0.5" id="A">A</text>
-        <text x="250" y="210" dx="10" style="opacity:0.5" id="B">B</text>
-        <text x="64" y="151" dx="-20" style="opacity:0.5" id="b">b</text>
-        <text x="157" y="150" dy="-5" style="opacity:0.5" id="c">c</text>
-        <text x="142" y="227" dx="0" style="opacity:0.5" id="a">a</text>
-    </svg>
-
-
-
-    <div class="data">
-        <div class="side1">
-            <div>Enter the length of sides</div>
-            <div class="length">Side a: </div><input type="number" id="s1" class="side" onkeyup="picture()">
-            <div class="length">Side b: </div><input type="number" id="s2" class="side" onkeyup="picture()">
-            <div class="length">Side c: </div><input type="number" id="s3" class="side" onkeyup="picture()">
-        </div>
-        <div class="angle1">
-            <div class="text">Enter the degree of angle</div>
-            <div class="degree">Angle &#x2220 A: </div><input type="number" id="a1" class="angle"
-                onkeyup="picture()"><br>
-            <div class="degree">Angle &#x2220 B: </div><input type="number" id="a2" class="angle"
-                onkeyup="picture()"><br>
-            <div class="degree">Angle &#x2220 C: </div><input type="number" id="a3" class="angle"
-                onkeyup="picture()"><br>
-        </div>
-
-    </div>
-    <div class="alert alert-warning alert-dismissible" id="alert">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Warning!</strong>
-        <h4 style="font-weight: 600;">Values are already calculated for the given data,If you want to calculate another
-            set of data then first press CLEAR INPUTS and then input the new set of data</h4>
-    </div>
-    <div id="outer" style="margin-top: 5%;">
-        <button id="inner" onclick="calculate()" onmouseover="disable(this)">CALCULATE</button>
-        <button id="inner1" onclick="reset()">CLEAR INPUTS</button>
-    </div>
-    <div id="res">
-
-    </div>
-    <canvas width="400" height="400" id="canvas">
-
-    </canvas>
-    <canvas width="400" height="400" id="canvas1">
-
-    </canvas>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <div class="header">Triangle Calculator</div>
     
+    <div class="main">
+        <div id="desc" class="">
+            Enter any three data from the six input box and press calculate and it will calculate the other three data
+            of triangle
+        </div>
+
+        <div class="data">
+            <div class="side1 form-control">
+                <div class="field">Enter the length of sides</div>
+                <div class="length field">Side a: </div>
+                <input type="number" id="s1" class="side field" onkeyup="picture()">
+                <div class="length field">Side b: </div>
+                <input type="number" id="s2" class="side field" onkeyup="picture()">
+                <div class="length field">Side c: </div>
+                <input type="number" id="s3" class="side field" onkeyup="picture()">
+            </div>
+
+            <div class="angle1 form-control">
+                <div class="text field">Enter the degree of angle</div>
+                <div class="degree field">Angle &#x2220 A: </div>
+                <input type="number" id="a1" class="angle field"
+                    onkeyup="picture()">
+                <div class="degree field">Angle &#x2220 B: </div>
+                <input type="number" id="a2" class="angle field"
+                    onkeyup="picture()">
+                <div class="degree field">Angle &#x2220 C: </div>
+                <input type="number" id="a3" class="angle field"
+                    onkeyup="picture()">
+            </div>
+
+            <svg height="300" width="300" class="form-control">
+                <line x1="50" y1="210" x2="70" y2="90" style="stroke:rgb(255, 0, 0);stroke-width:2.5;opacity:0.5"
+                    id="sideb" />
+                <line x1="70" y1="90" x2="250" y2="210" style="stroke:rgb(255, 0, 0);stroke-width:2.5;opacity:0.5"
+                    id="sidec" />
+                <line x1="250" y1="210" x2="50" y2="210" style="stroke:rgb(255,0,0);stroke-width:2.5;opacity:0.5"
+                    id="sidea" />
+                <path d="M 75 210 q 3 -24 -20 -24" style="stroke:rgb(37, 125, 207); stroke-width:3;opacity:0.5"
+                    fill="none" id="anglec" />
+                <path d="M 205 210 q -7 -15 8 -24" style="stroke : rgb(37, 125, 207); stroke-width:3;opacity:0.5"
+                    fill="none" id="angleb" />
+                <path d="M 66 117 q 20 9 26 -13" style="stroke : rgb(37, 125, 207); stroke-width:3;opacity:0.5"
+                    fill="none" id="anglea" />
+                <text x="50" y="213" dx="-20" style="opacity:0.5" id="C">C</text>
+                <text x="65" y="90" dy="-5" style="opacity:0.5" id="A">A</text>
+                <text x="250" y="210" dx="10" style="opacity:0.5" id="B">B</text>
+                <text x="64" y="151" dx="-20" style="opacity:0.5" id="b">b</text>
+                <text x="157" y="150" dy="-5" style="opacity:0.5" id="c">c</text>
+                <text x="142" y="227" dx="0" style="opacity:0.5" id="a">a</text>
+            </svg>
+        </div>
+
+        <div class="alert alert-warning alert-dismissible" id="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong>
+            <h4 style="font-weight: 600;">Values are already calculated for the given data,If you want to calculate
+                another
+                set of data then first press CLEAR INPUTS and then input the new set of data</h4>
+        </div>
+
+        <div id="outer" style="margin-top: 5%;">
+            <button id="inner" onclick="calculate()" onmouseover="disable(this)">CALCULATE</button>
+            <button id="inner1" onclick="reset()">CLEAR INPUTS</button>
+        </div>
+
+        <div id="res">
+
+        </div>
+
+        <canvas width="400" height="400" id="canvas">
+
+        </canvas>
+
+        <canvas width="400" height="400" id="canvas1">
+
+        </canvas>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+    </div>
 </body>
 
 </html>
